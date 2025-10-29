@@ -6,9 +6,9 @@ class MyHomePage extends StatelessWidget {
   final String npm = "2406404112"; //npm
   final String kelas = "B"; //kelas
   final List<ItemHomepage> items = [
-    ItemHomepage("All Products", Icons.newspaper),
-    ItemHomepage("My Products", Icons.add),
-    ItemHomepage("Create Product", Icons.logout),
+    ItemHomepage("All Products", Icons.newspaper, Colors.blue),
+    ItemHomepage("My Products", Icons.add, Colors.green),
+    ItemHomepage("Create Product", Icons.logout, Colors.red),
   ];
 
   @override
@@ -126,8 +126,9 @@ class InfoCard extends StatelessWidget {
 class ItemHomepage {
  final String name;
  final IconData icon;
+ final Color color;
 
- ItemHomepage(this.name, this.icon);
+ ItemHomepage(this.name, this.icon, this.color);
 }
 
 class ItemCard extends StatelessWidget {
@@ -141,7 +142,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       // Menentukan warna latar belakang dari tema aplikasi.
-      color: Theme.of(context).colorScheme.secondary,
+      color: item.color,
       // Membuat sudut kartu melengkung.
       borderRadius: BorderRadius.circular(12),
 
