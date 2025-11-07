@@ -1,3 +1,49 @@
+# Tugas 8
+1. Navigator.push()
+- Menambahkan (push) halaman baru di atas stack halaman yang sudah ada.
+- Ketika pengguna menekan tombol “back”, halaman sebelumnya akan muncul kembali.
+- Contoh: saat pengguna menekan tombol “Lihat Detail Produk” → halaman detail produk dibuka dengan Navigator.push(), agar bisa kembali ke halaman daftar produk.
+
+Navigator.pushReplacement()
+- Mengganti halaman saat ini dengan halaman baru (halaman lama dihapus dari stack).
+- Tidak bisa kembali ke halaman sebelumnya dengan tombol “back”.
+- Contoh: setelah pengguna berhasil login atau checkout, aplikasi mengganti halaman ke HomePage menggunakan Navigator.pushReplacement(), agar tidak bisa kembali ke halaman login/keranjang.
+
+2.
+- Scaffold menyediakan struktur dasar halaman: area utama (body), AppBar, dan Drawer.
+- AppBar menampilkan judul halaman, ikon navigasi, atau tombol aksi seperti cart atau logout. Biasanya ada di top halaman.
+- Drawer (misalnya di file left_drawer.dart) digunakan untuk navigasi antarhalaman seperti “Home”, “Produk”, “Tentang Kami”, “Logout”.
+Dengan menempatkan struktur ini secara konsisten di setiap halaman, pengguna merasa berada dalam satu aplikasi yang terintegrasi. Misalnya dengan adanya topbar/appbar dalam setiap halaman.
+
+3. 
+Padding
+- Memberi jarak antar elemen agar tampilan tidak saling menempel.
+- Membuat form terlihat rapi dan mudah dibaca.
+
+SingleChildScrollView
+- Memungkinkan halaman bergulir ketika konten form lebih panjang dari layar.
+- Penting pada tampilan form registrasi, checkout, atau input produk di Football Shop agar tidak terpotong di layar kecil.
+
+ListView
+- Cocok untuk menampilkan daftar elemen dengan panjang dinamis, seperti daftar produk atau item pesanan.
+- Dapat digabung dengan ListTile untuk tampilan yang seragam.
+
+4. Flutter menyediakan theme customization melalui ThemeData di MaterialApp. MaterialApp digunakan di main.dart (root dari seluruh aplikasi). misalnya: 
+MaterialApp(
+  theme: ThemeData(
+    primarySwatch: Colors.green,
+    scaffoldBackgroundColor: Colors.white,
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.green[700],
+      foregroundColor: Colors.white,
+    ),
+    buttonTheme: ButtonThemeData(
+      buttonColor: Colors.green,
+      textTheme: ButtonTextTheme.primary,
+    ),
+  ),
+  home: HomePage(),
+);
 # Tugas 7
 
 yallah banyak bgt
