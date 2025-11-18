@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app/widgets/left_drawer.dart';
 import 'package:app/screens/product_form.dart';
+import 'package:app/screens/news_entry_list.dart';
 import 'package:app/screens/menu.dart';
 
 class ItemCard extends StatelessWidget {
@@ -34,7 +35,14 @@ class ItemCard extends StatelessWidget {
                 builder: (context) => ProductFormPage(),
               ),
             );
-          }
+          } else if (item.name == "See Sports Products") {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const NewsEntryListPage()
+                ),
+            );
+        }
         },
         // Container untuk menyimpan Icon dan Text
         child: Container(
