@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app/widgets/left_drawer.dart';
 import 'package:app/screens/product_form.dart';
-import 'package:app/widgets/news_card.dart';
+import 'package:app/widgets/product_card.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
@@ -29,7 +29,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         // Warna latar belakang AppBar diambil dari skema warna tema aplikasi.
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Colors.blueGrey,
       ),
       drawer: LeftDrawer(),
       // Body halaman dengan padding di sekelilingnya.

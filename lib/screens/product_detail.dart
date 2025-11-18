@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:app/models/news_entry.dart';
+import 'package:app/models/product_entry.dart';
 
 class NewsDetailPage extends StatelessWidget {
-  final NewsEntry news;
+  final NewsEntry product;
 
-  const NewsDetailPage({super.key, required this.news});
+  const NewsDetailPage({super.key, required this.product});
 
   String _formatDate(DateTime date) {
     // Simple date formatter without intl package
@@ -17,8 +17,8 @@ class NewsDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('News Detail'),
-        backgroundColor: Colors.indigo,
+        title: const Text('Product Detail'),
+        backgroundColor: Colors.blueGrey,
         foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
@@ -26,9 +26,9 @@ class NewsDetailPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Thumbnail image
-            if (news.thumbnail.isNotEmpty)
+            if (product.thumbnail.isNotEmpty)
               Image.network(
-                'http://localhost:8000/proxy-image/?url=${Uri.encodeComponent(news.thumbnail)}',
+                'http://localhost:8000/proxy-image/?url=${Uri.encodeComponent(product.thumbnail)}',
                 width: double.infinity,
                 height: 250,
                 fit: BoxFit.cover,
@@ -47,7 +47,7 @@ class NewsDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Featured badge
-                  if (news.isFeatured)
+                  if (product.isFeatured)
                     Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12.0, vertical: 6.0),
@@ -67,7 +67,7 @@ class NewsDetailPage extends StatelessWidget {
 
                   // Title
                   Text(
-                    news.title,
+                    product.name,
                     style: const TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -86,7 +86,7 @@ class NewsDetailPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Text(
-                          news.category.toUpperCase(),
+                          product.category.toUpperCase(),
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -96,7 +96,7 @@ class NewsDetailPage extends StatelessWidget {
                       ),
                       const SizedBox(width: 12),
                       Text(
-                        news.seller,
+                        product.seller,
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey[600],
@@ -112,7 +112,7 @@ class NewsDetailPage extends StatelessWidget {
                       Icon(Icons.visibility, size: 16, color: Colors.grey[600]),
                       const SizedBox(width: 4),
                       Text(
-                        '${news.content} views',
+                        'Rp ${product.price}',
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey[600],
@@ -125,7 +125,7 @@ class NewsDetailPage extends StatelessWidget {
 
                   // Full content
                   Text(
-                    news.description,
+                    product.description,
                     style: const TextStyle(
                       fontSize: 16.0,
                       height: 1.6,

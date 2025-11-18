@@ -1,3 +1,72 @@
+# Tugas 9
+1. penggunaan model dart lebih ideal karena:
+- Type-safe, field seperti id, price, dan title dipastikan punya tipe data benar (int, String, bool)
+- Null-safety, menghindari error runtime kyk "null is not a subtype of String" karena semua field sudah terdefinisi
+- Maintainability, Jika API berubah, Anda cukup mengupdate satu file model, bukan seluruh widget.
+- Autocompletion, Flutter IDE bisa memberi suggestion (news.title, news.price, dll).
+
+Jika menggunakan Map<String,dynamic> akan tidak ada type-safty, dapat ada error runtime, lebih mudah typo misalnya "tittle" yang gk akan error sampai runtime, code berantakan, dan tidak aman terhadap null yang bisa menyebabkan crash
+
+2.
+Http
+- Library umum untuk HTTP request.
+- Tidak menyimpan cookie, sesi, atau CSRF token.
+- Harus mengatur header manual.
+
+CookieRequest
+- Dibuat khusus untuk komunikasi dengan Django Auth.
+- Menyimpan session cookie, CSRF token, autentikasi user
+- Memudahkan login/logout dan request yang butuh credentials.
+- Provider membagikan satu instance ke seluruh app
+
+3.
+- Agar seluruh page Flutter menggunakan session dan cookie yang sama.
+- Saat user login (CookieRequest punya session cookie), semua screen dapat mengecek apakah user sedang login atau melakukan request ke endpoint yang butuh auth
+
+Jika tidak pakai Provider, setiap widget punya cookieRequest sendiri, user akan dianggap logout di halaman lain, kalau cookies hilang, auth gagal
+
+4.
+- 10.0.2.2 di ALLOWED_HOSTS karena android emulator tidak mengenal localhost. itu adalah cara emulator mengakses komputer host, sebagai suatu interface. Kalau tidak ada, django akan menolak request dgn error 400
+- CORS/cross-origin. flutter dan django itu memiliki origin berbeda. Jika tidak ada cors, request akan diblok oleh browser dgn CORS policy error
+- cookie samesite/secure - untuk mengizinkan cookie sesi django dikirim ke flutter yg originnya berbeda. jika salah, user selalu dianggap logan, login tidak bertahan, request 403
+- tanpa <uses-permission android:name="android.permission.INTERNET" /> flutter tidak bisa mengakses django karena request timeout/loading selamanya. Android memang butuh permission khusus
+
+5.
+ a. django menyiapkan endpoint /json. data json di display menggunakan fungsi di main/views.py show_json. ini udh dibikin di tugas 6. Query DB, return jsonResponse
+ b. Json API, Flutter ngirim request final response = await request.get("http://localhost:8000/json/");
+ c. Fetch, Flutter nerima JSON dalam bentuk List<dynamic>
+ d. Parsing, Flutter memetakan ke model dart (newsEntry.FromJson(data))
+ e. Widget, Flutter tampilkan UI seperti NewsEntryCard dan NewsDetailPage dari data dalam format models
+
+6.
+Register
+- Flutter mengirim POST JSON ke /auth/register/
+-Django validasi password, cek username exist, buat user baru
+- Django mengirim JSON status ke Flutter, Flutter tampilkan dialog “User created successfully”.
+
+Login
+- User isi form login di Flutter.
+- Flutter kirim POST ke /auth/login/ menggunakan CookieRequest.
+- Django authenticate(username, password),jika benar, auth_login(request, user)
+- Django buat session ID dan kirim via cookie.
+- CookieRequest menyimpan cookie ini.
+- Seluruh request berikutnya mengirim cookie ke user dianggap login.
+- Flutter menampilkan menu yang hanya muncul saat login.
+
+Logout
+- flutter send request request.logout("http://.../auth/logout/");
+- Django melakukan auth_logout(request) -> hapus session.
+- CookieRequest menghapus cookie lokal
+- Flutter kembali ke halaman login/menu awal
+
+7.
+1. Melakukan deploy dan men debug sampai berjalan lancar
+2,3,4. Implementasi registrasi, login, logout dengan guidelines dari tutorial, setup sistem autentikasi dan login, pembuatan page, pengaitan halaman tersebut melalui urls django serta flutter routing. Penggunaan external package sangat mempermudah proses ini.
+5. Model kustom mudah dibuat dengan web tool Quicktype hanya dengan pasting field format json yang ingin digunakan
+6. Sempat ada sedikit editing karena field seller merupakan tipe data User yang non serializeable, tapi dapat dimodifikasi jadi string, tapi itu tidak menjadi salah satu goal jadi akhirnya dibiarkan aja. models di flutter ini disesuaikan dengan yang ada di django. Banyak ganti nama variabel
+7. Halaman detail juga sudah di elaborasi di tutorial, menggunakan Navigation dan formatting data NewsEntry di NewsEntryCard dan NewsEntryDetails
+ 
+
 # Tugas 8
 1. Navigator.push()
 - Menambahkan (push) halaman baru di atas stack halaman yang sudah ada.

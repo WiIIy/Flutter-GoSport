@@ -10,8 +10,8 @@ String newsEntryToJson(List<NewsEntry> data) => json.encode(List<dynamic>.from(d
 
 class NewsEntry {
     String id;
-    String title;
-    int content;
+    String name;
+    int price;
     String category;
     String thumbnail;
     String description;
@@ -20,8 +20,8 @@ class NewsEntry {
 
     NewsEntry({
         required this.id,
-        required this.title,
-        required this.content,
+        required this.name,
+        required this.price,
         required this.category,
         required this.thumbnail,
         required this.description,
@@ -31,8 +31,8 @@ class NewsEntry {
 
     factory NewsEntry.fromJson(Map<String, dynamic> json) => NewsEntry(
         id: json["id"],
-        title: json["title"],
-        content: json["content"],
+        name: json["name"],
+        price: json["price"],
         category: json["category"],
         thumbnail: json["thumbnail"],
         description: json["description"],
@@ -42,8 +42,8 @@ class NewsEntry {
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "title": title,
-        "content": content,
+        "name": name,
+        "price": price,
         "category": category,
         "thumbnail": thumbnail,
         "description": description,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:app/models/news_entry.dart';
+import 'package:app/models/product_entry.dart';
 
 class NewsEntryCard extends StatelessWidget {
-  final NewsEntry news;
+  final NewsEntry product;
   final VoidCallback onTap;
 
   const NewsEntryCard({
     super.key,
-    required this.news,
+    required this.product,
     required this.onTap,
   });
 
@@ -33,7 +33,7 @@ class NewsEntryCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(6),
                   child: Image.network(
-                    'http://localhost:8000/proxy-image/?url=${Uri.encodeComponent(news.thumbnail)}',
+                    'http://localhost:8000/proxy-image/?url=${Uri.encodeComponent(product.thumbnail)}',
                     height: 150,
                     width: double.infinity,
                     fit: BoxFit.cover,
@@ -48,7 +48,7 @@ class NewsEntryCard extends StatelessWidget {
 
                 // Title
                 Text(
-                  news.title,
+                  product.name,
                   style: const TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
@@ -57,14 +57,14 @@ class NewsEntryCard extends StatelessWidget {
                 const SizedBox(height: 6),
 
                 // Category
-                Text('Category: ${news.category}'),
+                Text('Category: ${product.category}'),
                 const SizedBox(height: 6),
 
                 // Content preview
                 Text(
-                  news.description.length > 100
-                      ? '${news.description.substring(0, 100)}...'
-                      : news.description,
+                  product.description.length > 100
+                      ? '${product.description.substring(0, 100)}...'
+                      : product.description,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(color: Colors.black54),
@@ -72,7 +72,7 @@ class NewsEntryCard extends StatelessWidget {
                 const SizedBox(height: 6),
 
                 // Featured indicator
-                if (news.isFeatured)
+                if (product.isFeatured)
                   const Text(
                     'Featured',
                     style: TextStyle(

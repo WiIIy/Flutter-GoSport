@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:app/models/news_entry.dart';
+import 'package:app/models/product_entry.dart';
 import 'package:app/widgets/left_drawer.dart';
-import 'package:app/screens/news_detail.dart';
-import 'package:app/widgets/news_entry_card.dart';
+import 'package:app/screens/product_detail.dart';
+import 'package:app/widgets/product_entry_card.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:app/screens/news_detail.dart';
+import 'package:app/screens/product_detail.dart';
 
 class NewsEntryListPage extends StatefulWidget {
   const NewsEntryListPage({super.key});
@@ -40,7 +40,7 @@ class _NewsEntryListPageState extends State<NewsEntryListPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('News Entry List'),
+        title: const Text('Product Entry List'),
       ),
       drawer: const LeftDrawer(),
       body: FutureBuilder(
@@ -53,7 +53,7 @@ class _NewsEntryListPageState extends State<NewsEntryListPage> {
               return const Column(
                 children: [
                   Text(
-                    'There are no news in football news yet.',
+                    'There are no product in football product yet.',
                     style: TextStyle(fontSize: 20, color: Color(0xff59A5D8)),
                   ),
                   SizedBox(height: 8),
@@ -63,14 +63,14 @@ class _NewsEntryListPageState extends State<NewsEntryListPage> {
               return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (_, index) => NewsEntryCard(
-                    news: snapshot.data![index],
+                    product: snapshot.data![index],
                     onTap: () {
-                    // Navigate to news detail page
+                    // Navigate to product detail page
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                         builder: (context) => NewsDetailPage(
-                            news: snapshot.data![index],
+                            product: snapshot.data![index],
                         ),
                         ),
                     );
