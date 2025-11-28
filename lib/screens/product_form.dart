@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:app/screens/menu.dart';
+import 'package:app/consts/urls.dart';
 
 class ProductFormPage extends StatefulWidget {
     const ProductFormPage({super.key});
@@ -223,10 +224,9 @@ class ProductFormPageState extends State<ProductFormPage> {
             if (_formKey.currentState!.validate()) {
               // TODO: Replace the URL with your app's URL
               // To connect Android emulator with Django on localhost, use URL http://10.0.2.2/
-              // If you using chrome,  use URL http://localhost:8000
               
               final response = await request.postJson(
-                "http://localhost:8000/create-flutter/",
+                Urls.baseUrl+"/create-flutter/",
                 jsonEncode({
                   "name": _name,
                   "price": _price,

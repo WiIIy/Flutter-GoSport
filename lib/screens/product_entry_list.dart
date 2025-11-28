@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:app/screens/product_detail.dart';
 import 'package:app/consts/consts.dart';
+import 'package:app/consts/urls.dart';
 
 class NewsEntryListPage extends StatefulWidget {
   const NewsEntryListPage({super.key});
@@ -21,7 +22,7 @@ class _NewsEntryListPageState extends State<NewsEntryListPage> {
   Future<List<NewsEntry>> fetchNews(CookieRequest request) async {
     // We always fetch ALL data from the existing endpoint
     // ignore: unused_local_variable
-    final response = await request.get('http://localhost:8000/json/');
+    final response = await request.get(Urls.baseUrl+'/json/');
     currentUserName = username_state;
     
     // Decode response to json format

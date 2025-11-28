@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/models/product_entry.dart';
+import 'package:app/consts/urls.dart';
 
 class NewsDetailPage extends StatelessWidget {
   final NewsEntry product;
@@ -28,7 +29,7 @@ class NewsDetailPage extends StatelessWidget {
             // Thumbnail image
             if (product.thumbnail.isNotEmpty)
               Image.network(
-                'http://localhost:8000/proxy-image/?url=${Uri.encodeComponent(product.thumbnail)}',
+                Urls.baseUrl+'/proxy-image/?url=${Uri.encodeComponent(product.thumbnail)}',
                 width: double.infinity,
                 height: 250,
                 fit: BoxFit.cover,

@@ -3,6 +3,7 @@ import 'package:app/widgets/left_drawer.dart';
 import 'package:app/screens/product_form.dart';
 import 'package:app/screens/product_entry_list.dart';
 import 'package:app/screens/menu.dart';
+import 'package:app/consts/urls.dart';
 
 import 'package:app/screens/login.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -52,10 +53,9 @@ class ItemCard extends StatelessWidget {
 else if (item.name == "Logout") {
     // TODO: Replace the URL with your app's URL and don't forget to add a trailing slash (/)!
     // To connect Android emulator with Django on localhost, use URL http://10.0.2.2/
-    // If you using chrome,  use URL http://localhost:8000
     
     final response = await request.logout(
-        "http://localhost:8000/auth/logout/");
+        Urls.logout);
     String message = response["message"];
     if (context.mounted) {
         if (response['status']) {

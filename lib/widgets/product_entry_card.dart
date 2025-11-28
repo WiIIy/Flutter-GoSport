@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/models/product_entry.dart';
+import 'package:app/consts/urls.dart';
 
 class NewsEntryCard extends StatelessWidget {
   final NewsEntry product;
@@ -33,7 +34,7 @@ class NewsEntryCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(6),
                   child: Image.network(
-                    'http://localhost:8000/proxy-image/?url=${Uri.encodeComponent(product.thumbnail)}',
+                    Urls.baseUrl+'/proxy-image/?url=${Uri.encodeComponent(product.thumbnail)}',
                     height: 150,
                     width: double.infinity,
                     fit: BoxFit.cover,
